@@ -34,7 +34,18 @@ public class ATM {
     
     public void startup() {
     	System.out.println("Welcome to the AIT ATM!\n");
-    	System.out.println("Account No.:");
+    	System.out.println("Account No.: ");
+    	long accountNo = in.nextLong();
+    	System.out.println("PIN        : ");
+    	int pin = in.nextInt();
+    	if ((accountNo == activeAccount.getAccountNo()) && (pin == activeAccount.getPin())) {
+    		System.out.println("\nHello, again, " + activeAccount.getAccountHolder().getFirstName() + "!\n");
+    		System.out.println("[1] View balance");
+            System.out.println("[2] Deposit money");
+            System.out.println("[3] Withdraw money");
+    	} else {
+    		System.out.println("\nInvalid account number and/or PIN.\n");
+    	}
     }
     
     public static void main(String[] args) {
