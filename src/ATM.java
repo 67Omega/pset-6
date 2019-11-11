@@ -32,6 +32,11 @@ public class ATM {
      * Application execution begins here.
      */
     
+    public void startup() {
+    	System.out.println("Welcome to the AIT ATM!\n");
+    	System.out.println("Account No.:");
+    }
+    
     public static void main(String[] args) {
         ATM atm = new ATM();
     }
