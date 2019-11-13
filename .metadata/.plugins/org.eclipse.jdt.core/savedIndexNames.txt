@@ -1,0 +1,2 @@
+INDEX VERSION 1.131+C:\Users\aneuhaus\Desktop\APCSA\pset-6\.metadata\.plugins\org.eclipse.jdt.core
+113558702.index

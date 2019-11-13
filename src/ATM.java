@@ -36,7 +36,13 @@ public class ATM {
         System.out.println("Welcome to the AIT ATM!\n");
         while (true) {
             System.out.print("Account No.: ");
-            long accountNo = in.nextLong();
+            String accountNo = in.next();
+            if (accountNo == "+") {
+            	accountCreation();
+            	startup();
+            } else {
+            	Long.parseLong(accountNo);
+            }
             System.out.print("PIN        : ");
             int pin = in.nextInt();
             if (isValidLogin(accountNo, pin)) {
@@ -53,7 +59,7 @@ public class ATM {
                     }
                 }
             } else {
-                if (accountNo = -1 && pin == -1) {
+                if (accountNo == -1 && pin == -1) {
                     shutdown();
                 } else {
                     System.out.println("\nInvalid account number and/or PIN.\n");
