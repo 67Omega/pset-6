@@ -38,8 +38,7 @@ public class ATM {
             System.out.print("Account No.: ");
             String accountNo = in.next();
             if (accountNo == "+") {
-            	accountCreation();
-            	startup();
+            	createNewAccount();
             } else {
             	Long.parseLong(accountNo);
             }
@@ -79,6 +78,20 @@ public class ATM {
         System.out.println("[4] Logout");
         
         return in.nextInt();
+    }
+ 
+    public void createNewAccount() {
+    	System.out.print("\nFirst name: ");
+    	String fName = in.next();
+    	System.out.print("Last name: ");
+    	String lName = in.next();
+    	String username = User(fName, lName);
+    	System.out.print("PIN: ");
+    	int newPIN = in.nextInt();
+    	long userAccountNum = createAccount(newPIN, username);
+    	System.out.println("\nThank you. Your account number is " + userAccountNum + ".");
+    	System.out.print("Please login to access your newly created account.\n");
+    	startup();
     }
     
     public void showBalance() {
