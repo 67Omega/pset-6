@@ -101,8 +101,22 @@ public class ATM {
     public void deposit() {
         System.out.print("\nEnter amount: ");
         double amount = in.nextDouble();
-        activeAccount.deposit(amount);
+        String depositStatus = activeAccount.deposit(amount);
         System.out.println();
+        switch depositStatus {
+        case "zero deposit":
+        	System.out.println("Deposit rejected. Amount must be greater than $0.00.");
+        	break;
+        case "overwhelm deposit":
+        	System.out.println("Deposit rejected. Amount would cause balance to exceed $999,999,999,999.99.");
+        	break;
+        case "successful deposit":
+        	System.out.println("Deposit successful.");
+        	break;
+        default:
+        	System.out.println("Invalid input.");
+        	break;
+        }
     }
     
     public void withdraw() {
