@@ -111,7 +111,7 @@ public class ATM {
         	System.out.println("Deposit rejected. Amount would cause balance to exceed $999,999,999,999.99.");
         	break;
         case "successful deposit":
-        	System.out.println("Deposit successful.");
+        	System.out.println("Deposit accepted.");
         	break;
         default:
         	System.out.println("Invalid input.");
@@ -120,10 +120,24 @@ public class ATM {
     }
     
     public void withdraw() {
-        System.out.print("\nEnter amount: ");
+    	System.out.print("\nEnter amount: ");
         double amount = in.nextDouble();
-        activeAccount.withdraw(amount);
+        String withdrawalStatus = activeAccount.withdraw(amount);
         System.out.println();
+        switch withdrawalStatus {
+        case "zero withdrawal":
+        	System.out.println("Withdrawal rejected. Amount must be greater than $0.00.");
+        	break;
+        case "overdraw":
+        	System.out.println("Withdrawal rejected. Insufficient funds.");
+        	break;
+        case "successful withdrawal":
+        	System.out.println("Withdrawal accepted.");
+        	break;
+        default:
+        	System.out.println("Invalid input.");
+        	break;
+        }
     }
     
     public void shutdown() {

@@ -1,3 +1,5 @@
+import java.text.NumberFormat;
+
 public class BankAccount {
         
     private int pin;
@@ -5,7 +7,7 @@ public class BankAccount {
     private double balance;
     private User accountHolder;
     
-    public BankAccount(int pin, long accountNo. double balance, User accountHolder) {
+    public BankAccount(int pin, long accountNo, User accountHolder) {
     	this.pin = pin;
     	this.accountNo = accountNo;
     	this.balance = 0.0;
@@ -21,7 +23,8 @@ public class BankAccount {
     }
     
     public double getBalance() {
-        return balance;
+        NumberFormat currency = NumberFormat.getCurrencyInstance();
+    	return currency.format(balance);
     }
     
     public User getAccountHolder() {
@@ -29,11 +32,25 @@ public class BankAccount {
     }
     
     public void deposit(double amount) {
-    	balance = balance + amount;
+    	if (amount <= 0) {
+    		return "zero deposit";
+    	} else if ((amount + (getBalance)) > 999999999999.99) {
+    		return "overwhelm deposit";
+    	} else {
+    		balance = balance + amount;
+    		return "succcessful deposit";
+    	}
     }
     
     public void withdraw(double amount) {
-    	balance = balance - amount;
+    	if (amount <= 0) {
+    		return "zero withdrawal";
+    	} else if (((getBalance) - amount) < 0.00) {
+    		return "overdraw";
+    	} else {
+    		balance = balance - amount;
+    		return "succcessful withdrawal";
+    	}
     }
     
     ////////////////////////////////////////////////////////////////////////////
