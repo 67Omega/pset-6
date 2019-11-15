@@ -31,9 +31,12 @@ public class ATM {
     /*
      * Application execution begins here.
      */
+    public void greet() {
+    	System.out.println("Welcome to the AIT ATM!\n");
+    	startup();
+    }
     
     public void startup() {
-        System.out.println("Welcome to the AIT ATM!\n");
         while (true) {
             System.out.print("Account No.: ");
             String accountNo = in.next();
@@ -168,7 +171,6 @@ public class ATM {
         	System.out.println("Invalid input.");
         	break;
         }
-    	
     }
     public void shutdown() {
         if (in != null) {
