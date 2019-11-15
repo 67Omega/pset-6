@@ -50,10 +50,11 @@ public class ATM {
                 boolean validLogin = true;
                 while (validLogin) {
                     switch (getSelection()) {
-                        case VIEW: showBalance(); break;
-                        case DEPOSIT: deposit(); break;
-                        case WITHDRAW: withdraw(); break;
-                        case LOGOUT: validLogin = false; break;
+                        case 1: showBalance(); break;
+                        case 2: deposit(); break;
+                        case 3: withdraw(); break;
+                        case 4: transfer(); break;
+                        case 5: validLogin = false; break;
                         default: System.out.println("\nInvalid selection.\n"); break;
                     }
                 }
@@ -75,8 +76,8 @@ public class ATM {
         System.out.println("[1] View balance");
         System.out.println("[2] Deposit money");
         System.out.println("[3] Withdraw money");
-        System.out.println("[4] Logout");
-        
+        System.out.println("[4] Transfer money");
+        System.out.println("[5] Logout");
         return in.nextInt();
     }
  
@@ -139,7 +140,13 @@ public class ATM {
         	break;
         }
     }
-    
+    public void transfer() {
+    	System.out.println("Enter account:");
+    	long destinationAccount = in.nextLong();
+    	System.out.println("Enter amount:");
+    	double transferAmount = in.nextDouble();
+    	String transferStatus = activeAccount.transfer(destinationAccount, transferAmount);
+    }
     public void shutdown() {
         if (in != null) {
             in.close();

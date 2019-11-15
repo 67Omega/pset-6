@@ -53,6 +53,8 @@ public class BankAccount {
     	}
     }
     
+    public void transfer(long destinationAccount, double )
+    
     ////////////////////////////////////////////////////////////////////////////
     //                                                                        //
     // Refer to the Simple ATM tutorial to fill in the details of this class. //
