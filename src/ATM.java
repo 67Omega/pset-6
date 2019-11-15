@@ -92,7 +92,7 @@ public class ATM {
     	String username = User(fName, lName);
     	System.out.print("PIN: ");
     	int newPIN = in.nextInt();
-    	long userAccountNum = createAccount(newPIN, username);
+    	long userAccountNum = bank.createAccount(newPIN, username);
     	System.out.println("\nThank you. Your account number is " + userAccountNum + ".");
     	System.out.print("Please login to access your newly created account.\n");
     	startup();
