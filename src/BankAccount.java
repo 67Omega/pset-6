@@ -34,7 +34,7 @@ public class BankAccount {
     public void deposit(double amount) {
     	if (amount <= 0) {
     		return "zero deposit";
-    	} else if ((amount + (getBalance)) > 999999999999.99) {
+    	} else if ((amount + (getBalance())) > 999999999999.99) {
     		return "overwhelm deposit";
     	} else {
     		balance = balance + amount;
@@ -45,7 +45,7 @@ public class BankAccount {
     public void withdraw(double amount) {
     	if (amount <= 0) {
     		return "zero withdrawal";
-    	} else if (((getBalance) - amount) < 0.00) {
+    	} else if (((getBalance()) - amount) < 0.00) {
     		return "overdraw";
     	} else {
     		balance = balance - amount;
@@ -53,7 +53,19 @@ public class BankAccount {
     	}
     }
     
-    public void transfer(long destinationAccount, double )
+    public void transfer(BankAccount transferAccount, double transferAmount) {
+    	if (amount <= 0) {
+    		return "zero transfer";
+    	} else if (transferAccount == null) {
+    		return "not found";
+    	} else if (amount > (getBalance())) {
+    		return "overdraw";
+    	} else if ((amount + (transferAccount.getBalance())) > 999999999999.99) {
+    		return "overwhelm transfer";
+    	} else {
+    		return "successful transfer";
+    	}
+    }
     
     ////////////////////////////////////////////////////////////////////////////
     //                                                                        //

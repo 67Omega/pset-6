@@ -77,7 +77,7 @@ public class ATM {
         System.out.println("[2] Deposit money");
         System.out.println("[3] Withdraw money");
         System.out.println("[4] Transfer money");
-        System.out.println("[5] Logout");
+        System.out.println("[5] Logout\n");
         return in.nextInt();
     }
  
@@ -141,11 +141,34 @@ public class ATM {
         }
     }
     public void transfer() {
-    	System.out.println("Enter account:");
+    	System.out.print("Enter account:");
     	long destinationAccount = in.nextLong();
-    	System.out.println("Enter amount:");
+    	BankAccount transferAccount = bank.getAccount(destinationAccount);
+    	System.out.print("Enter amount:");
     	double transferAmount = in.nextDouble();
-    	String transferStatus = activeAccount.transfer(destinationAccount, transferAmount);
+    	String transferStatus = activeAccount.transfer(transferAccount, transferAmount);
+    	System.out.println();
+    	switch transferStatus {
+        case "zero transfer":
+        	System.out.println("Transfer rejected. Amount must be greater than $0.00.");
+        	break;
+        case "not found":
+        	System.out.println("Transfer rejected. Destination account not found.");
+        	break;
+        case "overdraw":
+        	System.out.println("Transfer rejected. Insufficient funds.");
+        	break;
+        case "overwhelm transfer":
+        	System.out.println("Transfer rejected. Amount would cause destination balance to exceed $999,999,999,999.99.");
+        	break;
+        case "successful transfer":
+        	System.out.println("Transfer accepted.");
+        	break;
+        default:
+        	System.out.println("Invalid input.");
+        	break;
+        }
+    	
     }
     public void shutdown() {
         if (in != null) {
