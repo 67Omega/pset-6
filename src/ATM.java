@@ -39,12 +39,20 @@ public class ATM {
     public void startup() {
         while (true) {
             System.out.print("Account No.: ");
+<<<<<<< Updated upstream
             String accountNo = in.next();
             if (accountNo == "+") {
             	createNewAccount();
             } else {
             	Long.parseLong(accountNo);
             }
+=======
+            String accountNum = in.next();
+            if (accountNum == "+") {
+            	createNewAccount();
+            }
+            long accountNo = Long.valueOf(accountNum);
+>>>>>>> Stashed changes
             System.out.print("PIN        : ");
             int pin = in.nextInt();
             if (isValidLogin(accountNo, pin)) {
@@ -89,11 +97,19 @@ public class ATM {
     	String fName = in.next();
     	System.out.print("Last name: ");
     	String lName = in.next();
+<<<<<<< Updated upstream
     	String username = User(fName, lName);
     	System.out.print("PIN: ");
     	int newPIN = in.nextInt();
     	long userAccountNum = bank.createAccount(newPIN, username);
     	System.out.println("\nThank you. Your account number is " + userAccountNum + ".");
+=======
+    	User username = new User(fName, lName);
+    	System.out.print("PIN: ");
+    	int newPIN = in.nextInt();
+    	BankAccount userAccount = bank.createAccount(newPIN, username);
+    	System.out.println("\nThank you. Your account number is " + userAccount.getAccountNo() + ".");
+>>>>>>> Stashed changes
     	System.out.print("Please login to access your newly created account.\n");
     	startup();
     }
@@ -107,7 +123,11 @@ public class ATM {
         double amount = in.nextDouble();
         String depositStatus = activeAccount.deposit(amount);
         System.out.println();
+<<<<<<< Updated upstream
         switch depositStatus {
+=======
+        switch (depositStatus) {
+>>>>>>> Stashed changes
         case "zero deposit":
         	System.out.println("Deposit rejected. Amount must be greater than $0.00.");
         	break;
@@ -128,7 +148,11 @@ public class ATM {
         double amount = in.nextDouble();
         String withdrawalStatus = activeAccount.withdraw(amount);
         System.out.println();
+<<<<<<< Updated upstream
         switch withdrawalStatus {
+=======
+        switch (withdrawalStatus){
+>>>>>>> Stashed changes
         case "zero withdrawal":
         	System.out.println("Withdrawal rejected. Amount must be greater than $0.00.");
         	break;
@@ -151,7 +175,11 @@ public class ATM {
     	double transferAmount = in.nextDouble();
     	String transferStatus = activeAccount.transfer(transferAccount, transferAmount);
     	System.out.println();
+<<<<<<< Updated upstream
     	switch transferStatus {
+=======
+    	switch (transferStatus) {
+>>>>>>> Stashed changes
         case "zero transfer":
         	System.out.println("Transfer rejected. Amount must be greater than $0.00.");
         	break;

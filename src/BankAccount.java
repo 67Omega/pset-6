@@ -11,7 +11,11 @@ public class BankAccount {
     	this.pin = pin;
     	this.accountNo = accountNo;
     	this.balance = 0.0;
+<<<<<<< Updated upstream
     	this.accountHolder;
+=======
+    	this.accountHolder = accountHolder;
+>>>>>>> Stashed changes
     }
     
     public int getPin() {
@@ -31,7 +35,11 @@ public class BankAccount {
         return accountHolder;
     }
     
+<<<<<<< Updated upstream
     public void deposit(double amount) {
+=======
+    public String deposit(double amount) {
+>>>>>>> Stashed changes
     	if (amount <= 0) {
     		return "zero deposit";
     	} else if ((amount + (getBalance())) > 999999999999.99) {
@@ -42,7 +50,11 @@ public class BankAccount {
     	}
     }
     
+<<<<<<< Updated upstream
     public void withdraw(double amount) {
+=======
+    public String withdraw(double amount) {
+>>>>>>> Stashed changes
     	if (amount <= 0) {
     		return "zero withdrawal";
     	} else if (((getBalance()) - amount) < 0.00) {
@@ -53,6 +65,7 @@ public class BankAccount {
     	}
     }
     
+<<<<<<< Updated upstream
     public void transfer(BankAccount transferAccount, double transferAmount) {
     	if (amount <= 0) {
     		return "zero transfer";
@@ -61,6 +74,16 @@ public class BankAccount {
     	} else if (amount > (getBalance())) {
     		return "overdraw";
     	} else if ((amount + (transferAccount.getBalance())) > 999999999999.99) {
+=======
+    public String transfer(BankAccount transferAccount, double transferAmount) {
+    	if (transferAmount <= 0) {
+    		return "zero transfer";
+    	} else if (transferAccount == null) {
+    		return "not found";
+    	} else if (transferAmount > (getBalance())) {
+    		return "overdraw";
+    	} else if ((transferAmount + (transferAccount.getBalance())) > 999999999999.99) {
+>>>>>>> Stashed changes
     		return "overwhelm transfer";
     	} else {
     		return "successful transfer";
