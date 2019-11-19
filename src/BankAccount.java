@@ -24,7 +24,7 @@ public class BankAccount {
     
     public double getBalance() {
         NumberFormat currency = NumberFormat.getCurrencyInstance();
-    	return currency.format(balance);
+    	return Double.valueOf(currency.format(balance));
     }
     
     public User getAccountHolder() {
