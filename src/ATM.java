@@ -3,7 +3,9 @@ import java.util.Scanner;
 
 public class ATM {
     
-    private Scanner in;
+    public static final int FIRST_NAME_WIDTH = 20;
+	public static final int LAST_NAME_WIDTH = 30;
+	private Scanner in;
     private BankAccount activeAccount;
     private Bank bank;
     
@@ -40,15 +42,16 @@ public class ATM {
         while (true) {
             System.out.print("Account No.: ");
             String accountNum = in.next();
-            if (accountNum == "+") {
+            if (accountNum.equals("+")) {
             	createNewAccount();
             }
             long accountNo = Long.valueOf(accountNum);
             System.out.print("PIN        : ");
             int pin = in.nextInt();
-            if (isValidLogin(accountNo, pin)) {
+            if (accountNo == -1 && pin == -1) {
+                shutdown();
+            } else if (isValidLogin(accountNo, pin)) {
                 System.out.println("\nHello, again, " + activeAccount.getAccountHolder().getFirstName() + "!\n");
-                
                 boolean validLogin = true;
                 while (validLogin) {
                     switch (getSelection()) {
@@ -61,16 +64,13 @@ public class ATM {
                     }
                 }
             } else {
-                if (accountNo == -1 && pin == -1) {
-                    shutdown();
-                } else {
-                    System.out.println("\nInvalid account number and/or PIN.\n");
-                }
+               System.out.println("\nInvalid account number and/or PIN.\n");
             }
         }
     }
     
     public boolean isValidLogin(long accountNo, int pin) {
+    	activeAccount = bank.getAccount(accountNo);
         return accountNo == activeAccount.getAccountNo() && pin == activeAccount.getPin();
     }
     
@@ -108,16 +108,16 @@ public class ATM {
         System.out.println();
         switch (depositStatus) {
         case "zero deposit":
-        	System.out.println("Deposit rejected. Amount must be greater than $0.00.");
+        	System.out.println("Deposit rejected. Amount must be greater than $0.00.\n");
         	break;
         case "overwhelm deposit":
-        	System.out.println("Deposit rejected. Amount would cause balance to exceed $999,999,999,999.99.");
+        	System.out.println("Deposit rejected. Amount would cause balance to exceed $999,999,999,999.99.\n");
         	break;
         case "successful deposit":
-        	System.out.println("Deposit accepted.");
+        	System.out.println("Deposit accepted.\n");
         	break;
         default:
-        	System.out.println("Invalid input.");
+        	System.out.println("Invalid input.\n");
         	break;
         }
     }
@@ -129,45 +129,45 @@ public class ATM {
         System.out.println();
         switch (withdrawalStatus){
         case "zero withdrawal":
-        	System.out.println("Withdrawal rejected. Amount must be greater than $0.00.");
+        	System.out.println("Withdrawal rejected. Amount must be greater than $0.00.\n");
         	break;
         case "overdraw":
-        	System.out.println("Withdrawal rejected. Insufficient funds.");
+        	System.out.println("Withdrawal rejected. Insufficient funds.\n");
         	break;
         case "successful withdrawal":
-        	System.out.println("Withdrawal accepted.");
+        	System.out.println("Withdrawal accepted.\n");
         	break;
         default:
-        	System.out.println("Invalid input.");
+        	System.out.println("Invalid input.\n");
         	break;
         }
     }
     public void transfer() {
-    	System.out.print("Enter account:");
+    	System.out.print("Enter account: ");
     	long destinationAccount = in.nextLong();
     	BankAccount transferAccount = bank.getAccount(destinationAccount);
-    	System.out.print("Enter amount:");
+    	System.out.print("Enter amount: ");
     	double transferAmount = in.nextDouble();
     	String transferStatus = activeAccount.transfer(transferAccount, transferAmount);
     	System.out.println();
     	switch (transferStatus) {
         case "zero transfer":
-        	System.out.println("Transfer rejected. Amount must be greater than $0.00.");
+        	System.out.println("Transfer rejected. Amount must be greater than $0.00.\n");
         	break;
         case "not found":
-        	System.out.println("Transfer rejected. Destination account not found.");
+        	System.out.println("Transfer rejected. Destination account not found.\n");
         	break;
         case "overdraw":
-        	System.out.println("Transfer rejected. Insufficient funds.");
+        	System.out.println("Transfer rejected. Insufficient funds.\n");
         	break;
         case "overwhelm transfer":
-        	System.out.println("Transfer rejected. Amount would cause destination balance to exceed $999,999,999,999.99.");
+        	System.out.println("Transfer rejected. Amount would cause destination balance to exceed $999,999,999,999.99.\n");
         	break;
         case "successful transfer":
-        	System.out.println("Transfer accepted.");
+        	System.out.println("Transfer accepted.\n");
         	break;
         default:
-        	System.out.println("Invalid input.");
+        	System.out.println("Invalid input.\n");
         	break;
         }
     }

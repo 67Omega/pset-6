@@ -7,10 +7,16 @@ public class BankAccount {
     private double balance;
     private User accountHolder;
     
-    public BankAccount(int pin, long accountNo, User accountHolder) {
+    public BankAccount(int pin, long accountNo, double balance, User accountHolder) {
     	this.pin = pin;
     	this.accountNo = accountNo;
     	this.balance = 0.0;
+    	this.accountHolder = accountHolder;
+    }
+    
+    public BankAccount(int pin, long accountNo, User accountHolder) {
+    	this.pin = pin;
+    	this.accountNo = accountNo;
     	this.accountHolder = accountHolder;
     }
     
@@ -22,9 +28,9 @@ public class BankAccount {
         return accountNo;
     }
     
-    public double getBalance() {
+    public String getBalance() {
         NumberFormat currency = NumberFormat.getCurrencyInstance();
-    	return Double.valueOf(currency.format(balance));
+    	return currency.format(balance);
     }
     
     public User getAccountHolder() {
@@ -34,11 +40,11 @@ public class BankAccount {
     public String deposit(double amount) {
     	if (amount <= 0) {
     		return "zero deposit";
-    	} else if ((amount + (getBalance())) > 999999999999.99) {
+    	} else if ((amount + (balance)) > 999999999999.99) {
     		return "overwhelm deposit";
     	} else {
     		balance = balance + amount;
-    		return "succcessful deposit";
+    		return "successful deposit";
     	}
     }
 
@@ -46,11 +52,11 @@ public class BankAccount {
 
     	if (amount <= 0) {
     		return "zero withdrawal";
-    	} else if (((getBalance()) - amount) < 0.00) {
+    	} else if (((balance) - amount) < 0.00) {
     		return "overdraw";
     	} else {
     		balance = balance - amount;
-    		return "succcessful withdrawal";
+    		return "successful withdrawal";
     	}
     }
     
@@ -60,11 +66,12 @@ public class BankAccount {
     		return "zero transfer";
     	} else if (transferAccount == null) {
     		return "not found";
-    	} else if (transferAmount > (getBalance())) {
+    	} else if (transferAmount > (balance)) {
     		return "overdraw";
-    	} else if ((transferAmount + (transferAccount.getBalance())) > 999999999999.99) {
+    	} else if ((transferAmount + (transferAccount.balance)) > 999999999999.99) {
     		return "overwhelm transfer";
     	} else {
+    		transferAccount.balance += transferAmount;
     		return "successful transfer";
     	}
     }
