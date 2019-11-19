@@ -70,7 +70,7 @@ public class ATM {
     }
     
     public boolean isValidLogin(long accountNo, int pin) {
-    	activeAccount = bank.getAccount(accountNo);
+    	activeAccount = bank.login(accountNo, pin);
         return accountNo == activeAccount.getAccountNo() && pin == activeAccount.getPin();
     }
     
@@ -92,6 +92,7 @@ public class ATM {
     	System.out.print("PIN: ");
     	int newPIN = in.nextInt();
     	BankAccount userAccount = bank.createAccount(newPIN, username);
+    	bank.save();
     	System.out.println("\nThank you. Your account number is " + userAccount.getAccountNo() + ".");
     	System.out.print("Please login to access your newly created account.\n");
     	startup();
