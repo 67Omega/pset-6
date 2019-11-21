@@ -34,13 +34,13 @@ public class ATM {
      * Application execution begins here.
      */
     public void greet() {
-    	System.out.println("Welcome to the AIT ATM!\n");
+    	System.out.println("Welcome to the AIT ATM!");
     	startup();
     }
     
     public void startup() {
         while (true) {
-            System.out.print("Account No.: ");
+            System.out.print("\nAccount No.: ");
             String accountNum = in.next();
             if (accountNum.equals("+")) {
             	createNewAccount();
@@ -90,7 +90,7 @@ public class ATM {
         System.out.println("[2] Deposit money");
         System.out.println("[3] Withdraw money");
         System.out.println("[4] Transfer money");
-        System.out.println("[5] Logout\n");
+        System.out.println("[5] Logout");
         return in.nextInt();
     }
  
