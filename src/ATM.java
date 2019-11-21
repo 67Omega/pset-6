@@ -98,11 +98,11 @@ public class ATM {
     	String fName = "";
     	String lName = "";
     	int newPIN = 0;
-    	while (((fName.length() < 1) || (fName.length()) > 20)) {
+    	while (((fName.length() < 1) || (fName.length()) > 20)|| (lName == null)) {
     			System.out.print("\nFirst name: ");
     			fName = in.next();
     	}
-    	while (((lName.length() < 1) || (lName.length()) > 30)) {
+    	while (((lName.length() < 1) || (lName.length()) > 30) || (lName == null)) {
 			System.out.print("Last name: ");
 			lName = in.next();
 		}
