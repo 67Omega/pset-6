@@ -194,7 +194,9 @@ public class ATM {
         	break;
         }
     	bank.update(activeAccount);
-    	bank.update(transferAccount);
+    	if (transferAccount != null) {
+    		bank.update(transferAccount);
+    	}
     }
     public void shutdown() {
         if (in != null) {

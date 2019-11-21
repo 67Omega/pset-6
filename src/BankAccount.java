@@ -62,10 +62,10 @@ public class BankAccount {
     
 
     public String transfer(BankAccount transferAccount, double transferAmount) {
-    	if (transferAmount <= 0) {
-    		return "zero transfer";
-    	} else if (transferAccount == null) {
+    	if (transferAccount == null) {
     		return "not found";
+    	} else if (transferAmount <= 0) {
+    		return "zero transfer";
     	} else if (transferAmount > (balance)) {
     		return "overdraw";
     	} else if ((transferAmount + (transferAccount.balance)) > 999999999999.99) {
