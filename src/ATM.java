@@ -55,11 +55,22 @@ public class ATM {
                 boolean validLogin = true;
                 while (validLogin) {
                     switch (getSelection()) {
-                        case 1: showBalance(); break;
-                        case 2: deposit(); break;
-                        case 3: withdraw(); break;
-                        case 4: transfer(); break;
-                        case 5: validLogin = false; break;
+                        case 1: 
+                        	showBalance(); 
+                        	break;
+                        case 2: 
+                        	deposit(); 
+                        	break;
+                        case 3: 
+                        	withdraw(); 
+                        	break;
+                        case 4: 
+                        	transfer(); 
+                        	break;
+                        case 5: 
+                        	validLogin = false;
+                        	bank.save();
+                        	break;
                         default: System.out.println("\nInvalid selection.\n"); break;
                     }
                 }
@@ -84,13 +95,22 @@ public class ATM {
     }
  
     public void createNewAccount() {
-    	System.out.print("\nFirst name: ");
-    	String fName = in.next();
-    	System.out.print("Last name: ");
-    	String lName = in.next();
+    	String fName = "";
+    	String lName = "";
+    	int newPIN = 0;
+    	while (((fName.length() < 1) || (fName.length()) > 20)) {
+    			System.out.print("\nFirst name: ");
+    			fName = in.next();
+    	}
+    	while (((lName.length() < 1) || (lName.length()) > 30)) {
+			System.out.print("Last name: ");
+			lName = in.next();
+		}
     	User username = new User(fName, lName);
-    	System.out.print("PIN: ");
-    	int newPIN = in.nextInt();
+    	while ((newPIN < 1000) || (newPIN > 9999)) {
+    		System.out.print("PIN: ");
+    		newPIN = in.nextInt();
+    	}
     	BankAccount userAccount = bank.createAccount(newPIN, username);
     	bank.save();
     	System.out.println("\nThank you. Your account number is " + userAccount.getAccountNo() + ".");
@@ -121,6 +141,7 @@ public class ATM {
         	System.out.println("Invalid input.\n");
         	break;
         }
+        bank.update(activeAccount);
     }
     
     public void withdraw() {
@@ -142,6 +163,7 @@ public class ATM {
         	System.out.println("Invalid input.\n");
         	break;
         }
+        bank.update(activeAccount);
     }
     public void transfer() {
     	System.out.print("Enter account: ");
@@ -171,18 +193,21 @@ public class ATM {
         	System.out.println("Invalid input.\n");
         	break;
         }
+    	bank.update(activeAccount);
+    	bank.update(transferAccount);
     }
     public void shutdown() {
         if (in != null) {
             in.close();
         }
         System.out.println("\nGoodbye!");
+        bank.save();
         System.exit(0);
     }
     
     public static void main(String[] args) {
         ATM atm = new ATM();
         
-        atm.startup();
+        atm.greet();
     }
 }
